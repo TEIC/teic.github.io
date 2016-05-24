@@ -6,7 +6,7 @@
     <script src="../js/CETEI.js" charset="utf-8"></script>
     <script type="text/javascript">
       (new CETEI).getHTML5('https://raw.githubusercontent.com/TEIC/TEI/dev/Documents/TCW/tcw22.xml', function(data) {
-        document.getElementByTagName("body").appendChild(data);
+        document.getElementsByTagName("body")[0].appendChild(data);
       });
     </script>
     <title>TCW 22: Building a TEI Release</title>

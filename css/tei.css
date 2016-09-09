@@ -108,15 +108,19 @@ tei-emph {
 }
 /* Tables */
 tei-table {
-  border-collapse: collapse;
-  display: table;
-  margin: 1em;
+  /* replaced by table */
 }
 tei-row {
-  display: table-row;
+  /* replaced by tr */
 }
 tei-cell {
-  display: table-cell;
+  /* replaced by td */
+}
+table {
+  border-collapse: collapse;
+  margin: 1em;
+}
+td {
   padding: 1em 1.5em 1em 1em;
   border: thin solid gray;
 }

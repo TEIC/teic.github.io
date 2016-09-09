@@ -106,3 +106,17 @@ tei-hi[rend=italic] {
 tei-emph {
   font-weight: bold;
 }
+/* Tables */
+tei-table {
+  border-collapse: collapse;
+  display: table;
+  margin: 1em;
+}
+tei-row {
+  display: table-row;
+}
+tei-cell {
+  display: table-cell;
+  padding: 1em 1.5em 1em 1em;
+  border: thin solid gray;
+}

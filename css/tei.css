@@ -93,6 +93,20 @@ tei-code {
   font-family: Monaco, "Courier New", Courier, monospace;
   background-color: #EEE;
 }
+tei-ident {
+  font-family: Monaco, "Courier New", Courier, monospace;
+  background-color: #EEE;
+}
+tei-gi {
+    text-before: "<";
+  font-family: Monaco, "Courier New", Courier, monospace;
+  background-color: #EEF;
+  text-after: ">";
+}
+tei-att {
+  font-family: Monaco, "Courier New", Courier, monospace;
+  background-color: #EEF;
+}
 tei-lb::before {
   content: '\a';
   white-space: pre;

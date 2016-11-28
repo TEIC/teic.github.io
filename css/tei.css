@@ -143,7 +143,7 @@ tei-cell {
 }
 /* HTML */
 dt {
-  font-weight: 500;
+  font-weight: bold;
 }
 table {
   border-collapse: collapse;

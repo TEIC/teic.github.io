@@ -53,6 +53,53 @@ var CETEI = (function () {
           shadow.appendChild(img);
         };
       },
+      "list": function list() {
+        var ceteicean = this;
+        return function () {
+          if (this.hasAttribute("type") && this.getAttribute("type") == "gloss") {
+            var shadow = this.createShadowRoot();
+            ceteicean.addShadowStyle(shadow);
+            var dl = document.createElement("dl");
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
+
+            try {
+              for (var _iterator = Array.from(this.children)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                var child = _step.value;
+
+                if (child.nodeType == Node.ELEMENT_NODE) {
+                  if (child.localName == "tei-label") {
+                    var dt = document.createElement("dt");
+                    dt.innerHTML = child.innerHTML;
+                    dl.appendChild(dt);
+                  }
+                  if (child.localName == "tei-item") {
+                    var dd = document.createElement("dd");
+                    dd.innerHTML = child.innerHTML;
+                    dl.appendChild(dd);
+                  }
+                }
+              }
+            } catch (err) {
+              _didIteratorError = true;
+              _iteratorError = err;
+            } finally {
+              try {
+                if (!_iteratorNormalCompletion && _iterator.return) {
+                  _iterator.return();
+                }
+              } finally {
+                if (_didIteratorError) {
+                  throw _iteratorError;
+                }
+              }
+            }
+
+            shadow.appendChild(dl);
+          }
+        };
+      },
       "table": function table() {
         var ceteicean = this;
         return function () {
@@ -67,80 +114,25 @@ var CETEI = (function () {
             caption.innerHTML = head.innerHTML;
             shadowContent.appendChild(caption);
           }
-          var _iteratorNormalCompletion = true;
-          var _didIteratorError = false;
-          var _iteratorError = undefined;
-
-          try {
-            for (var _iterator = Array.from(shadowContent.querySelectorAll("tei-row"))[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-              var row = _step.value;
-
-              var tr = document.createElement("tr");
-              tr.innerHTML = row.innerHTML;
-              var _iteratorNormalCompletion3 = true;
-              var _didIteratorError3 = false;
-              var _iteratorError3 = undefined;
-
-              try {
-                for (var _iterator3 = Array.from(row.attributes)[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-                  var attr = _step3.value;
-
-                  tr.setAttribute(attr.name, attr.value);
-                }
-              } catch (err) {
-                _didIteratorError3 = true;
-                _iteratorError3 = err;
-              } finally {
-                try {
-                  if (!_iteratorNormalCompletion3 && _iterator3.return) {
-                    _iterator3.return();
-                  }
-                } finally {
-                  if (_didIteratorError3) {
-                    throw _iteratorError3;
-                  }
-                }
-              }
-
-              row.parentElement.replaceChild(tr, row);
-            }
-          } catch (err) {
-            _didIteratorError = true;
-            _iteratorError = err;
-          } finally {
-            try {
-              if (!_iteratorNormalCompletion && _iterator.return) {
-                _iterator.return();
-              }
-            } finally {
-              if (_didIteratorError) {
-                throw _iteratorError;
-              }
-            }
-          }
-
           var _iteratorNormalCompletion2 = true;
           var _didIteratorError2 = false;
           var _iteratorError2 = undefined;
 
           try {
-            for (var _iterator2 = Array.from(shadowContent.querySelectorAll("tei-cell"))[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-              var cell = _step2.value;
+            for (var _iterator2 = Array.from(shadowContent.querySelectorAll("tei-row"))[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+              var row = _step2.value;
 
-              var td = document.createElement("td");
-              if (cell.hasAttribute("cols")) {
-                td.setAttribute("colspan", cell.getAttribute("cols"));
-              }
-              td.innerHTML = cell.innerHTML;
+              var tr = document.createElement("tr");
+              tr.innerHTML = row.innerHTML;
               var _iteratorNormalCompletion4 = true;
               var _didIteratorError4 = false;
               var _iteratorError4 = undefined;
 
               try {
-                for (var _iterator4 = Array.from(cell.attributes)[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
-                  var _attr = _step4.value;
+                for (var _iterator4 = Array.from(row.attributes)[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+                  var attr = _step4.value;
 
-                  td.setAttribute(_attr.name, _attr.value);
+                  tr.setAttribute(attr.name, attr.value);
                 }
               } catch (err) {
                 _didIteratorError4 = true;
@@ -157,7 +149,7 @@ var CETEI = (function () {
                 }
               }
 
-              cell.parentElement.replaceChild(td, cell);
+              row.parentElement.replaceChild(tr, row);
             }
           } catch (err) {
             _didIteratorError2 = true;
@@ -170,6 +162,61 @@ var CETEI = (function () {
             } finally {
               if (_didIteratorError2) {
                 throw _iteratorError2;
+              }
+            }
+          }
+
+          var _iteratorNormalCompletion3 = true;
+          var _didIteratorError3 = false;
+          var _iteratorError3 = undefined;
+
+          try {
+            for (var _iterator3 = Array.from(shadowContent.querySelectorAll("tei-cell"))[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+              var cell = _step3.value;
+
+              var td = document.createElement("td");
+              if (cell.hasAttribute("cols")) {
+                td.setAttribute("colspan", cell.getAttribute("cols"));
+              }
+              td.innerHTML = cell.innerHTML;
+              var _iteratorNormalCompletion5 = true;
+              var _didIteratorError5 = false;
+              var _iteratorError5 = undefined;
+
+              try {
+                for (var _iterator5 = Array.from(cell.attributes)[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
+                  var _attr = _step5.value;
+
+                  td.setAttribute(_attr.name, _attr.value);
+                }
+              } catch (err) {
+                _didIteratorError5 = true;
+                _iteratorError5 = err;
+              } finally {
+                try {
+                  if (!_iteratorNormalCompletion5 && _iterator5.return) {
+                    _iterator5.return();
+                  }
+                } finally {
+                  if (_didIteratorError5) {
+                    throw _iteratorError5;
+                  }
+                }
+              }
+
+              cell.parentElement.replaceChild(td, cell);
+            }
+          } catch (err) {
+            _didIteratorError3 = true;
+            _iteratorError3 = err;
+          } finally {
+            try {
+              if (!_iteratorNormalCompletion3 && _iterator3.return) {
+                _iterator3.return();
+              }
+            } finally {
+              if (_didIteratorError3) {
+                throw _iteratorError3;
               }
             }
           }
@@ -204,6 +251,49 @@ var CETEI = (function () {
         }
         elt.appendChild(content);
       },
+      "list": function list(elt) {
+        if (elt.hasAttribute("type") && elt.getAttribute("type") == "gloss") {
+          var dl = document.createElement("dl");
+          var _iteratorNormalCompletion6 = true;
+          var _didIteratorError6 = false;
+          var _iteratorError6 = undefined;
+
+          try {
+            for (var _iterator6 = Array.from(elt.children)[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
+              var child = _step6.value;
+
+              if (child.nodeType == Node.ELEMENT_NODE) {
+                if (child.localName == "tei-label") {
+                  var dt = document.createElement("dt");
+                  dt.innerHTML = child.innerHTML;
+                  dl.appendChild(dt);
+                }
+                if (child.localName == "tei-item") {
+                  var dd = document.createElement("dd");
+                  dd.innerHTML = child.innerHTML;
+                  dl.appendChild(dd);
+                }
+              }
+            }
+          } catch (err) {
+            _didIteratorError6 = true;
+            _iteratorError6 = err;
+          } finally {
+            try {
+              if (!_iteratorNormalCompletion6 && _iterator6.return) {
+                _iterator6.return();
+              }
+            } finally {
+              if (_didIteratorError6) {
+                throw _iteratorError6;
+              }
+            }
+          }
+
+          this.hideContent(elt);
+          elt.appendChild(dl);
+        }
+      },
       "table": function table(elt) {
         var table = document.createElement("table");
         table.innerHTML = elt.innerHTML;
@@ -214,37 +304,37 @@ var CETEI = (function () {
           caption.innerHTML = head.innerHTML;
           table.appendChild(caption);
         }
-        var _iteratorNormalCompletion5 = true;
-        var _didIteratorError5 = false;
-        var _iteratorError5 = undefined;
+        var _iteratorNormalCompletion7 = true;
+        var _didIteratorError7 = false;
+        var _iteratorError7 = undefined;
 
         try {
-          for (var _iterator5 = Array.from(table.querySelectorAll("tei-row"))[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
-            var row = _step5.value;
+          for (var _iterator7 = Array.from(table.querySelectorAll("tei-row"))[Symbol.iterator](), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
+            var row = _step7.value;
 
             var tr = document.createElement("tr");
             tr.innerHTML = row.innerHTML;
-            var _iteratorNormalCompletion7 = true;
-            var _didIteratorError7 = false;
-            var _iteratorError7 = undefined;
+            var _iteratorNormalCompletion9 = true;
+            var _didIteratorError9 = false;
+            var _iteratorError9 = undefined;
 
             try {
-              for (var _iterator7 = Array.from(row.attributes)[Symbol.iterator](), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
-                var attr = _step7.value;
+              for (var _iterator9 = Array.from(row.attributes)[Symbol.iterator](), _step9; !(_iteratorNormalCompletion9 = (_step9 = _iterator9.next()).done); _iteratorNormalCompletion9 = true) {
+                var attr = _step9.value;
 
                 tr.setAttribute(attr.name, attr.value);
               }
             } catch (err) {
-              _didIteratorError7 = true;
-              _iteratorError7 = err;
+              _didIteratorError9 = true;
+              _iteratorError9 = err;
             } finally {
               try {
-                if (!_iteratorNormalCompletion7 && _iterator7.return) {
-                  _iterator7.return();
+                if (!_iteratorNormalCompletion9 && _iterator9.return) {
+                  _iterator9.return();
                 }
               } finally {
-                if (_didIteratorError7) {
-                  throw _iteratorError7;
+                if (_didIteratorError9) {
+                  throw _iteratorError9;
                 }
               }
             }
@@ -252,54 +342,54 @@ var CETEI = (function () {
             row.parentElement.replaceChild(tr, row);
           }
         } catch (err) {
-          _didIteratorError5 = true;
-          _iteratorError5 = err;
+          _didIteratorError7 = true;
+          _iteratorError7 = err;
         } finally {
           try {
-            if (!_iteratorNormalCompletion5 && _iterator5.return) {
-              _iterator5.return();
+            if (!_iteratorNormalCompletion7 && _iterator7.return) {
+              _iterator7.return();
             }
           } finally {
-            if (_didIteratorError5) {
-              throw _iteratorError5;
+            if (_didIteratorError7) {
+              throw _iteratorError7;
             }
           }
         }
 
-        var _iteratorNormalCompletion6 = true;
-        var _didIteratorError6 = false;
-        var _iteratorError6 = undefined;
+        var _iteratorNormalCompletion8 = true;
+        var _didIteratorError8 = false;
+        var _iteratorError8 = undefined;
 
         try {
-          for (var _iterator6 = Array.from(table.querySelectorAll("tei-cell"))[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
-            var cell = _step6.value;
+          for (var _iterator8 = Array.from(table.querySelectorAll("tei-cell"))[Symbol.iterator](), _step8; !(_iteratorNormalCompletion8 = (_step8 = _iterator8.next()).done); _iteratorNormalCompletion8 = true) {
+            var cell = _step8.value;
 
             var td = document.createElement("td");
             if (cell.hasAttribute("cols")) {
               td.setAttribute("colspan", cell.getAttribute("cols"));
             }
             td.innerHTML = cell.innerHTML;
-            var _iteratorNormalCompletion8 = true;
-            var _didIteratorError8 = false;
-            var _iteratorError8 = undefined;
+            var _iteratorNormalCompletion10 = true;
+            var _didIteratorError10 = false;
+            var _iteratorError10 = undefined;
 
             try {
-              for (var _iterator8 = Array.from(cell.attributes)[Symbol.iterator](), _step8; !(_iteratorNormalCompletion8 = (_step8 = _iterator8.next()).done); _iteratorNormalCompletion8 = true) {
-                var _attr2 = _step8.value;
+              for (var _iterator10 = Array.from(cell.attributes)[Symbol.iterator](), _step10; !(_iteratorNormalCompletion10 = (_step10 = _iterator10.next()).done); _iteratorNormalCompletion10 = true) {
+                var _attr2 = _step10.value;
 
                 td.setAttribute(_attr2.name, _attr2.value);
               }
             } catch (err) {
-              _didIteratorError8 = true;
-              _iteratorError8 = err;
+              _didIteratorError10 = true;
+              _iteratorError10 = err;
             } finally {
               try {
-                if (!_iteratorNormalCompletion8 && _iterator8.return) {
-                  _iterator8.return();
+                if (!_iteratorNormalCompletion10 && _iterator10.return) {
+                  _iterator10.return();
                 }
               } finally {
-                if (_didIteratorError8) {
-                  throw _iteratorError8;
+                if (_didIteratorError10) {
+                  throw _iteratorError10;
                 }
               }
             }
@@ -307,26 +397,26 @@ var CETEI = (function () {
             cell.parentElement.replaceChild(td, cell);
           }
         } catch (err) {
-          _didIteratorError6 = true;
-          _iteratorError6 = err;
+          _didIteratorError8 = true;
+          _iteratorError8 = err;
         } finally {
           try {
-            if (!_iteratorNormalCompletion6 && _iterator6.return) {
-              _iterator6.return();
+            if (!_iteratorNormalCompletion8 && _iterator8.return) {
+              _iterator8.return();
             }
           } finally {
-            if (_didIteratorError6) {
-              throw _iteratorError6;
+            if (_didIteratorError8) {
+              throw _iteratorError8;
             }
           }
         }
 
-        elt.innerHTML = "<span style=\"display:none\">" + elt.innerHTML + "</span>";
+        this.hideContent(elt);
         elt.appendChild(table);
       },
       "egXML": function egXML(elt) {
         var contents = this.serialize(elt, true);
-        elt.innerHTML = "<span style=\"display:none\">" + elt.innerHTML + "</span>";
+        this.hideContent(elt);
         elt.innerHTML += "<pre>" + contents + "</pre>";
       }
     }
@@ -971,6 +1061,17 @@ var CETEI = (function () {
           str += "&lt;/" + el.getAttribute("data-teiname") + ">";
         }
         return str;
+      }
+    }, {
+      key: "hideContent",
+      value: function hideContent(elt) {
+        var content = elt.innerHTML;
+        elt.innerHTML = "";
+        var hidden = document.createElement("span");
+        hidden.setAttribute("style", "display:none;");
+        hidden.setAttribute("class", "hide");
+        hidden.innerHTML = content;
+        elt.appendChild(hidden);
       }
     }, {
       key: "unEscapeEntities",

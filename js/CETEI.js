@@ -946,7 +946,7 @@ var CETEI = (function () {
                 str += "&lt;!--" + node.nodeValue + "-->";
                 break;
               default:
-                str += node.nodeValue;
+                str += this.unEscapeEntities(node.nodeValue);
             }
           }
         } catch (err) {
@@ -968,6 +968,11 @@ var CETEI = (function () {
           str += "&lt;/" + el.getAttribute("data-teiname") + ">";
         }
         return str;
+      }
+    }, {
+      key: "unEscapeEntities",
+      value: function unEscapeEntities(str) {
+        return str.replace(/&lt;/, "<").replace(/&gt;/, ">").replace(/&quot;/, "\"").replace(/&apos;/, "'").replace(/&amp;/, "&");
       }
 
       // public method

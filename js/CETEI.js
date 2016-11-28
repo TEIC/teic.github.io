@@ -624,9 +624,10 @@ var CETEI = (function () {
       key: "_fromTEI",
       value: function _fromTEI(TEI_dom) {
         var root_el = TEI_dom.documentElement;
-        this.els = new Set(Array.from(root_el.getElementsByTagName("*"), function (x) {
+        this.els = new Set(Array.from(root_el.getElementsByTagNameNS("*", "http://www.tei-c.org/ns/1.0"), function (x) {
           return x.tagName;
         }));
+        this.els.add("egXML"); // Special case—not in TEI namespace, but needs to be handled
         this.els.add(root_el.tagName); // Add the root element to the array
       }
 

@@ -949,7 +949,7 @@ var CETEI = (function () {
                 str += "&lt;!--" + node.nodeValue + "-->";
                 break;
               default:
-                str += this.unEscapeEntities(node.nodeValue);
+                str += node.nodeValue.replace(/</g, "&lt;");
             }
           }
         } catch (err) {

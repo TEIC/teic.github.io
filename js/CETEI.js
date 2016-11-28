@@ -942,6 +942,9 @@ var CETEI = (function () {
               case Node.ELEMENT_NODE:
                 str += this.serialize(node);
                 break;
+              case Node.PROCESSING_INSTRUCTION_NODE:
+                str += "&lt;?" + node.nodeValue + "?>";
+                break;
               case Node.COMMENT_NODE:
                 str += "&lt;!--" + node.nodeValue + "-->";
                 break;
@@ -972,7 +975,7 @@ var CETEI = (function () {
     }, {
       key: "unEscapeEntities",
       value: function unEscapeEntities(str) {
-        return str.replace(/&lt;/, "<").replace(/&gt;/, ">").replace(/&quot;/, "\"").replace(/&apos;/, "'").replace(/&amp;/, "&");
+        return str.replace(/&gt;/, ">").replace(/&quot;/, "\"").replace(/&apos;/, "'").replace(/&amp;/, "&");
       }
 
       // public method

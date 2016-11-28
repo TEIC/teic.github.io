@@ -31,10 +31,10 @@ var CETEI = (function () {
 
   var behaviors = {
     "handlers": {
+      "eg": ["<pre>", "</pre>"],
       // inserts a link inside <ptr> using the @target; the link in the
       // @href is piped through the rw (rewrite) function before insertion
       "ptr": ["<a href=\"$rw@target\">$@target</a>"],
-      "pre": ["<pre>", "</pre>"],
       // wraps the content of the <ref> in an HTML link
       "ref": ["<a href=\"$rw@target\">", "</a>"],
       "graphic": function graphic() {

@@ -6,7 +6,9 @@
     <link type="application/tei+xml" rel="alternative" href="https://raw.githubusercontent.com/TEIC/Documentation/master/TCW/tcw27.xml">
     <script src="../js/CETEI.js" charset="utf-8"></script>
     <script type="text/javascript">
-      (new CETEI).getHTML5('https://raw.githubusercontent.com/TEIC/Documentation/master/TCW/tcw27.xml?new=' + Date.now(), function(data) {
+    var c = new CETEI();
+    c.shadowCSS = "../css/tei.css";
+    c..getHTML5('https://raw.githubusercontent.com/TEIC/Documentation/master/TCW/tcw27.xml?new=' + Date.now(), function(data) {
         document.getElementsByTagName("body")[0].appendChild(data);
       });
     </script>

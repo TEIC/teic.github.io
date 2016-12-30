@@ -89,6 +89,17 @@ tei-list[type=ordered]>tei-item:before {
 tei-item {
   display: list-item;
 }
+tei-listbibl {
+  display: block;
+  margin-left: 30px;
+  margin-top: .5em;
+  margin-bottom: .5em;
+  padding-left: 0;
+}
+tei-listbibl>tei-bibl {
+  display: list-item;
+  list-style-type: none;
+}
 tei-code {
   font-family: Monaco, "Courier New", Courier, monospace;
   background-color: #EEE;
@@ -129,6 +140,10 @@ tei-row {
 }
 tei-cell {
   /* replaced by td */
+}
+/* HTML */
+dt {
+  font-weight: bold;
 }
 table {
   border-collapse: collapse;

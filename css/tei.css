@@ -5,6 +5,7 @@ color: #000000;
 font-family: "Noto Sans", Verdana, Tahoma, Geneva, Arial, Helvetica, sans-serif;
 font-size: 0.8em;
 line-height: 1.6em;
+margin:1em;
 }
 tei-teiheader {
   display: block;
@@ -124,6 +125,9 @@ tei-gi {
 tei-att {
   font-family: "Noto Mono", Monaco, "Courier New", Courier, monospace;
   background-color: #EEF;
+}
+tei-att::before {
+  content: '@';
 }
 tei-lb::before {
   content: '\a';

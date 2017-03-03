@@ -1,8 +1,8 @@
 /* general styles */
 
-tei-TEI {
+body {
 color: #000000;
-font-family: Verdana, Tahoma, Geneva, Arial, Helvetica, sans-serif;
+font-family: "Noto Sans", Verdana, Tahoma, Geneva, Arial, Helvetica, sans-serif;
 font-size: 0.8em;
 line-height: 1.6em;
 }

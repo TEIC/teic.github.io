@@ -38,7 +38,6 @@ var slogans = [
 
 var choice = Math.floor(Math.random() * slogans.length);
 var language = window.navigator.language?window.navigator.language:"en-US";
-language = "fr";
 language = language.substring(0,2);
 var slogan = slogans[choice][language];
 if (!slogan) {

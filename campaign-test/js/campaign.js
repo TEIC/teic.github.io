@@ -81,7 +81,7 @@ if (!slogans[language]) {
   language = language.substring(0,2);
 }
 if (!slogans[language]) {
-  language = "en";
+  language = "fr";
 }
 var choice = Math.floor(Math.random() * slogans[language].length);
 var slogan = slogans[language][choice];

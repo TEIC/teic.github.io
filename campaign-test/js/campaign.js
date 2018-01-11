@@ -76,12 +76,13 @@ var slogans = {
 };
 
 var language = window.navigator.language?window.navigator.language:"en-US";
-language = language.substring(0,5);
+//language = language.substring(0,5);
+language = "fr";
 if (!slogans[language]) {
   language = language.substring(0,2);
 }
 if (!slogans[language]) {
-  language = "fr";
+  language = "en";
 }
 var choice = Math.floor(Math.random() * slogans[language].length);
 var slogan = slogans[language][choice];

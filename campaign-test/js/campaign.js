@@ -76,8 +76,7 @@ var slogans = {
 };
 
 var language = window.navigator.language?window.navigator.language:"en-US";
-//language = language.substring(0,5);
-language = "fr";
+language = language.substring(0,5);
 if (!slogans[language]) {
   language = language.substring(0,2);
 }

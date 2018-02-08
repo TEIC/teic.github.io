@@ -115,11 +115,12 @@ var showCampaign = function () {
   banner.innerHTML = "<style type=\"text/css\">\
     a#campaignlink {text-decoration:none; color: black;} \
     a#campaignlink:hover {text-decoration:underline;}\
-    button.campaignclose {float:right; margin-right:25px; margin-top: 3px}\
+    button.campaignclose {background-color:#CDEEFE; border: none; display:inline-block; \
+      font-size:1.2em; float:right; margin-right:22px; margin-top: -6px}\
   img.campaignicon {width:22px}\
   </style>" +
     "<img class=\"campaignicon\" src=\"" + images[slogan[1]] + "\"> <a id=\"campaignlink\" href=\"http://members.tei-c.org/Join\">" 
-    + slogan[0] + "</a><button class=\"campaignclose\" type=\"button\" onclick=\"hideCampaign()\">X</button>";
+    + slogan[0] + "</a><button class=\"campaignclose\" type=\"button\" onclick=\"hideCampaign()\">×</button>";
   document.querySelector("#container").insertAdjacentElement('afterBegin', banner);
 };
 

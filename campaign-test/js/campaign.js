@@ -92,9 +92,14 @@ if (!slogans[language]) {
 }
 var choice = Math.floor(Math.random() * slogans[language].length);
 var slogan = slogans[language][choice];
-var expires = 10000 //1209600000; // 2 weeks in milliseconds
+var expires = 604800000;  // 1 week in milliseconds
+var base = "http://www.tei-c.org/Vault/membership-campaign/js/";
 
 var canShow = function() {
+  var stopped = window.localStorage.getItem("Stop-TEICampaign"); //Stop-TEICampaign is set if they click the link.
+  if (stopped) {
+    return false;
+  }
   var time = window.localStorage.getItem("Hide-TEICampaign");
   if (time) {
     time = Number.parseInt(time);
@@ -119,15 +124,27 @@ var showCampaign = function () {
       font-size:1.2em; float:right; margin-right:22px; margin-top: -6px}\
   img.campaignicon {width:22px}\
   </style>" +
-    "<img class=\"campaignicon\" src=\"" + images[slogan[1]] + "\"> <a id=\"campaignlink\" href=\"http://members.tei-c.org/Join\">" 
+    "<img class=\"campaignicon\" src=\"" + base + images[slogan[1]] 
+    + "\"> <a id=\"campaignlink\" href=\"http://members.tei-c.org/Join\" onclick=\"return stopCampaign();\">" 
     + slogan[0] + "</a><button class=\"campaignclose\" type=\"button\" onclick=\"hideCampaign()\">×</button>";
-  document.querySelector("#container").insertAdjacentElement('afterBegin', banner);
+  var parent = document.querySelector("#container");
+  if (!parent) {
+    parent = document.querySelector("body");
+  }
+  parent.insertAdjacentElement('afterBegin', banner);
 };
 
 var hideCampaign = function() {
   window.localStorage.setItem("Hide-TEICampaign", Date.now().toString());
   var banner = document.querySelector("#TEICampaign");
   banner.parentElement.removeChild(banner);
+};
+
+var stopCampaign = function() {
+  window.localStorage.setItem("Stop-TEICampaign", true);
+  return true;
 }
 
-window.onload = showCampaign;
+(function(){
+  document.addEventListener('DOMContentLoaded', showCampaign);
+})();

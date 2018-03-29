@@ -29,7 +29,7 @@ var slogans = {
     ["¿Dónde en el mundo está TEI ocurriendo? ¡Marca tu lugar!","pindrop"],
     ["Código abierto y acceso abierto nunca son gratis. ¡Apoye al TEI-C!","unlock"]
   ],
-  "es-ES": [
+  "es": [
     ["Haz crecer la comunidad TEI-C +1: apúntate ya","plus"],
     ["Únete a la constelación de superestrellas TEI: hazte miembro","star"],
     ["Mantén en marcha a TEI: participa hoy mismo","wrench"],
@@ -96,6 +96,7 @@ var expires = 604800000;  // 1 week in milliseconds
 var base = "http://www.tei-c.org/Vault/membership-campaign/js/";
 
 var canShow = function() {
+  return false; // comment out to launch; re-comment to suspend
   var stopped = window.localStorage.getItem("Stop-TEICampaign"); //Stop-TEICampaign is set if they click the link.
   if (stopped) {
     return false;
@@ -143,7 +144,7 @@ var hideCampaign = function() {
 var stopCampaign = function() {
   window.localStorage.setItem("Stop-TEICampaign", true);
   return true;
-}
+};
 
 (function(){
   document.addEventListener('DOMContentLoaded', showCampaign);

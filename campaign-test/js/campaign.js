@@ -29,7 +29,7 @@ var slogans = {
     ["¿Dónde en el mundo está TEI ocurriendo? ¡Marca tu lugar!","pindrop"],
     ["Código abierto y acceso abierto nunca son gratis. ¡Apoye al TEI-C!","unlock"]
   ],
-  "es": [
+  "es-ES": [
     ["Haz crecer la comunidad TEI-C +1: apúntate ya","plus"],
     ["Únete a la constelación de superestrellas TEI: hazte miembro","star"],
     ["Mantén en marcha a TEI: participa hoy mismo","wrench"],

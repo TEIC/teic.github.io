@@ -96,7 +96,6 @@ var expires = 604800000;  // 1 week in milliseconds
 var base = "http://www.tei-c.org/Vault/membership-campaign/js/";
 
 var canShow = function() {
-  return false; // comment out to launch; re-comment to suspend
   var stopped = window.localStorage.getItem("Stop-TEICampaign"); //Stop-TEICampaign is set if they click the link.
   if (stopped) {
     return false;

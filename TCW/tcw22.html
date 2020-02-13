@@ -1,6 +1,6 @@
 <!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" href="/css/tei.css"><script type="text/javascript" src="/js/CETEI.js"></script><script type="text/javascript">
           var c = new CETEI();
-          c.els = ["TEI","teiHeader","fileDesc","titleStmt","title","author","publicationStmt","publisher","date","sourceDesc","p","revisionDesc","change","text","body","div","head","ref","ident","list","item","list","code","lb","q","hi","ptr","emph",];
+          c.els = ["TEI","teiHeader","fileDesc","titleStmt","title","author","publicationStmt","publisher","date","sourceDesc","p","revisionDesc","change","text","body","div","head","ref","ident","list","item","list","code","lb","q","hi","emph",];
           c.els.push("egXML");
           if (document.registerElement) {
             c.registerAll(c.els);
@@ -36,6 +36,7 @@
       </tei-sourcedesc>
     </tei-filedesc>
     <tei-revisiondesc data-teiname="revisionDesc">
+      <tei-change data-teiname="change" when="2020-02-13" who="#JL">Additional changes based on February 2020 release to make links visible, clarify release steps, confirm primacy of Paderborn Jenkins server.</tei-change>
       <tei-change data-teiname="change" when="2020-02-13" who="#JL">Update all references, and add links, to Jenkins servers. Revise instructions regarding release version numbers.</tei-change>
       <tei-change data-teiname="change" when="2020-02-10" who="#EBB">Update all references about ssh to the tei server to the new HumaNum server consistently. Correct small grammatical errors.</tei-change>
       <tei-change data-teiname="change" when="2019-02-04" who="#EM">Add updates and clarifications learned from last release.</tei-change>
@@ -127,7 +128,9 @@
               </tei-list>
             Take a little time to watch them work, and see how a push to the GitHub
             repository causes them to start building TEI packages. There are three specific build
-            jobs associated with P5, and they run in a fixed sequence.</tei-item>
+            jobs associated with P5, and they run in a fixed sequence. Currently, as of February 2020,
+            the actual build for the release will rely on the first Jenkins server, often referred to as
+            the "Paderborn Jenkins" (maintained by Peter Stadler in Paderborn, Germany).</tei-item>
           <tei-item data-teiname="item">Access to the <tei-ref data-teiname="ref" target="https://tei-c.slack.com">TEI Council Slack</tei-ref> 
             which will be the communication channel during the release process.</tei-item>
           <tei-item data-teiname="item">Several hours of time. You won't be busy all the time, but the process from
@@ -175,15 +178,18 @@
           <tei-head data-teiname="head">1-2 weeks before release:</tei-head>
           <tei-item data-teiname="item">Inform the Jenkins maintainers (who may not be on the Council listserv), and the 
             TEI sysadmin, of the pending release date, so that they can be available or on-call. </tei-item>
-          <tei-item data-teiname="item">Ask one of the Jenkins maintainers (currently Martin Holmes, Peter Stadler, and Raffaele Viglianti) 
+          <tei-item data-teiname="item">Ask one of the Jenkins maintainers (Peter Stadler, Martin Holmes, and Raffaele Viglianti) 
             to run a link check on the Guidelines and fix broken links in the dev branch. </tei-item>
           <tei-item data-teiname="item">Ask for the TEI-C GPG key passphrase. You'll need it for signing the Debian packages. 
             (The GPG private key itself is hosted on the server at the default location.)</tei-item>
+            <!-- Revisit the above item, which was called into question during February 2020 release.
+              If Debian package update is not the responsibility of release technician(s),
+            and is actually handled by Peter Stadler, this step is not necessary. (JL, 2020-02-13) -->
           <tei-item data-teiname="item"><tei-hi data-teiname="hi" rend="bold">Communicate with the TEI Council chair to make sure that the P5/ReleaseNotes/readme-X.X.X.xml 
             is compiled</tei-hi><tei-lb data-teiname="lb"></tei-lb> Normally, this will be created by the TEI Council chair at the
             point when the repository moved from its "alpha" stage to "beta", following these steps: <tei-list data-teiname="list">
               <tei-item data-teiname="item">Confirm the version number for the new release in consultation with Council. TEI
-                version numbers are based on the <tei-ref data-teiname="ref" target="http://www.unicode.org/versions/">system used by the Unicode Consortium</tei-ref> but with the first digit for major
+                version numbers are based on the Unicode Consortium system (<tei-ref data-teiname="ref" target="http://www.unicode.org/versions/">http://www.unicode.org/versions/</tei-ref>) but with the first digit for major
                 changes, the second for schema-changing revisions, and the third for
                 non-schema-changing revisions. When the first or second digit is incremented, the
                 following digit or digits is set to zero. During initial development, the version
@@ -259,12 +265,20 @@
           <tei-item data-teiname="item"><tei-hi data-teiname="hi" rend="bold">Push your changes</tei-hi> for both P5 and the Stylesheets to the git 
             repository, <tei-code data-teiname="code">git push origin master</tei-code><tei-lb data-teiname="lb"></tei-lb> and watch Jenkins build P5 for you.<tei-lb data-teiname="lb"></tei-lb> 
             This should be the final push for this version, and it will trigger the Jenkins servers 
-            to rebuild the TEI packages. This is where you'll find the Jenkins servers: <tei-list data-teiname="list">
-              <tei-item data-teiname="item"><tei-ptr data-teiname="ptr" target="http://jenkins.tei-c.org/"></tei-ptr></tei-item>
-              <tei-item data-teiname="item"><tei-ptr data-teiname="ptr" target="http://jenkins2.tei-c.org/"></tei-ptr></tei-item>
-            </tei-list> And now you wait while the Jenkins servers build the packages. This can
-            take a couple of hours, so be patient. All of the Jenkins servers should behave
-            identically, and they should all build all three TEI packages successfully. 
+            to rebuild the TEI packages. As a reminder, you can find the Jenkins servers here:
+            <tei-list data-teiname="list">
+              <tei-item data-teiname="item"><tei-ref data-teiname="ref" target="https://jenkins.tei-c.org">https://jenkins.tei-c.org</tei-ref></tei-item>
+              <tei-item data-teiname="item"><tei-ref data-teiname="ref" target="https://jenkins2.tei-c.org">https://jenkins2.tei-c.org</tei-ref></tei-item>
+              <tei-item data-teiname="item"><tei-ref data-teiname="ref" target="https://jenkins3.tei-c.org">https://jenkins3.tei-c.org</tei-ref></tei-item>
+            </tei-list>
+            And now you wait while the Jenkins servers build the packages, keeping in mind that
+            subsequent steps will require the build packages from the Paderborn Jenkins server 
+            (as of February 2020). This can take a couple of hours, so be patient. 
+            <!-- As of February 2020, the following sentence, which previously appeared in the TCW,
+              was proven false.
+              
+              "All of the Jenkins servers should behave
+              identically, and they should all build all three TEI packages successfully." (RV, EB, JL, 2020-02-13) -->
             <tei-hi data-teiname="hi" rend="bold">Note</tei-hi>: The P5 and Stylesheets builds have reciprocal dependencies,
             so the first build of either the Stylesheets or the Guidelines may fail just because
             there isn't yet a current build of the other for it to use. This isn't a cause for
@@ -277,7 +291,8 @@
             completed on all Jenkins servers, click on the job number of the last build for each of the
             three TEI jobs to make sure that it was triggered by the commit that you made in the
             previous step (you should see your own commit message on the build page). Make sure that
-            all builds were successful (they should have green balls next to them). </tei-item>
+            all builds were successful (they should have green balls next to them). In the case of red balls,
+            indicating a failed build, seek support via the TEI Council Slack. </tei-item>
           <tei-item data-teiname="item">
             <tei-hi data-teiname="hi" rend="bold">Log into TEI server and run the tei-install.sh script:</tei-hi><tei-lb data-teiname="lb"></tei-lb>
             Log into the TEI server via <tei-code data-teiname="code">ssh tei@cchum-kvm-dockerteic.in2p3.fr</tei-code> 
@@ -303,7 +318,8 @@
             --Jenkins=http://jenkins2.tei-c.org/. Make sure the script completes successfully each time 
             changing the final parameter from --install, to --makecurrent, and then --upload. </tei-item>
           
-          <tei-item data-teiname="item">Repeat the steps above for the Stylesheets:
+          <tei-item data-teiname="item"><tei-hi data-teiname="hi" rend="bold">Repeat the steps above for the Stylesheets</tei-hi>, remembering that the version number is the Stylesheets version, which will be different from
+            the Guidelines version:
             <tei-lb data-teiname="lb"></tei-lb><tei-code data-teiname="code">./tei-install.sh --package=Stylesheets
               --version=X.X.X --sfuser=username --install</tei-code>
             <tei-lb data-teiname="lb"></tei-lb><tei-code data-teiname="code">./tei-install.sh --package=Stylesheets
@@ -311,11 +327,10 @@
             <tei-lb data-teiname="lb"></tei-lb><tei-code data-teiname="code">./tei-install.sh --package=Stylesheets
               --version=X.X.X --sfuser=username --upload</tei-code>
             <tei-lb data-teiname="lb"></tei-lb>
-          Remember, the version number is the Stylesheets version, which will be different from
-          the Guidelines version.</tei-item>
+          </tei-item>
 
           <tei-item data-teiname="item"><tei-hi data-teiname="hi" rend="bold">Check the TEI website and all downloadable files are displaying the
-              correct version</tei-hi><tei-lb data-teiname="lb"></tei-lb> Everything should now be done, so go to <tei-ref data-teiname="ref" target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/index.html">the newly
+              correct version</tei-hi><tei-lb data-teiname="lb"></tei-lb> Everything should now be done, so go to <tei-ref data-teiname="ref" target="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/index.html">the newly
               released version on the TEI site</tei-ref> and browse the Guidelines. Check that your
             version number is displayed in the footer of the page, and check that at least one
             change made since the last release is being reflected online. </tei-item>
@@ -335,9 +350,8 @@
 
           <tei-item data-teiname="item">
             <tei-hi data-teiname="hi" rend="bold">Make your release the default downloadable version from
-            Sourceforge</tei-hi><tei-lb data-teiname="lb"></tei-lb> Go to the SourceForge site:<tei-lb data-teiname="lb"></tei-lb>
-            <tei-ptr data-teiname="ptr" target="https://sourceforge.net/projects/tei/files/TEI-P5-all/"></tei-ptr><tei-lb data-teiname="lb"></tei-lb> log in, and
-            click the information button on your new release. Make it the default download for all
+              Sourceforge</tei-hi><tei-lb data-teiname="lb"></tei-lb> Go to the SourceForge site (<tei-ref data-teiname="ref" target="https://sourceforge.net/projects/tei/files/TEI-P5-all/">https://sourceforge.net/projects/tei/files/TEI-P5-all/</tei-ref>),
+            log in, and click the information button on your new release. Make it the default download for all
             operating systems. Now make sure that the main Download button links to your package. </tei-item>
 
           <tei-item data-teiname="item">
@@ -350,10 +364,10 @@
             <tei-code data-teiname="code">git push origin P5_Release_X.X.X</tei-code>
           </tei-item>
 
-          <tei-item data-teiname="item"><tei-hi data-teiname="hi" rend="bold">Make a Release on GitHub</tei-hi><tei-lb data-teiname="lb"></tei-lb> Go to the <tei-ref data-teiname="ref" target="https://github.com/TEIC/TEI/tags">TEI Tags</tei-ref> page on GitHub. You should
+          <tei-item data-teiname="item"><tei-hi data-teiname="hi" rend="bold">Make a Release on GitHub</tei-hi><tei-lb data-teiname="lb"></tei-lb> Go to the TEI Tags page at <tei-ref data-teiname="ref" target="https://github.com/TEIC/TEI/tags">https://github.com/TEIC/TEI/tags</tei-ref> page on GitHub. You should
             see the tag you just pushed there. Click on it and then click on "Edit Release". Add a link to the release notes README, which should be at
-            http://www.tei-c.org/release/doc/tei-p5-doc/readme-X.X.X.html into the text box. Add a copy of the zipped
-            release by downloading it from <tei-ref data-teiname="ref" target="http://jenkins.tei-c.org/job/TEIP5/lastSuccessfulBuild/artifact/P5/tei-2.9.1.zip">Jenkins</tei-ref> and then uploading it to the release page. </tei-item>
+            https://www.tei-c.org/release/doc/tei-p5-doc/readme-X.X.X.html into the text box. Add a copy of the zipped
+            release by downloading it from <tei-ref data-teiname="ref" target="https://jenkins.tei-c.org/job/TEIP5/lastSuccessfulBuild/artifact/P5/">https://jenkins.tei-c.org/job/TEIP5/lastSuccessfulBuild/artifact/P5/</tei-ref> and then uploading it to the release page. </tei-item>
 
           <tei-item data-teiname="item"><tei-hi data-teiname="hi" rend="bold">Update the Debian Package repository with the new release</tei-hi><tei-lb data-teiname="lb"></tei-lb>
             The TEI Debian packages are regularily created during each Jenkins build. 
@@ -361,24 +375,26 @@
             <tei-ref data-teiname="ref" target="http://packages.tei-c.org/deb/">http://packages.tei-c.org/deb/</tei-ref> 
             which can be done by simply running <tei-code data-teiname="code">ant</tei-code> on the TEI server within the 
             <tei-code data-teiname="code">~/packages.tei-c.org/deb/</tei-code> directory. 
-            (The ANT script is currently hosted at <tei-ref data-teiname="ref" target="https://github.com/peterstadler/TEI-apt-repo">Peter's GitHub</tei-ref>.)
+            (The ANT script is currently hosted at Peter Stadler's GitHub, at <tei-ref data-teiname="ref" target="https://github.com/peterstadler/TEI-apt-repo">https://github.com/peterstadler/TEI-apt-repo</tei-ref>.)
             <tei-emph data-teiname="emph">Since the repository index needs to be signed, you'll need the passphrase for the GPG key.</tei-emph> 
             Make sure you've received it in advance! 
             <tei-lb data-teiname="lb"></tei-lb>Another caveat: <tei-code data-teiname="code">ant</tei-code> fails to fetch the packages via HTTPS when 
             running an outdated Java VM. Make sure to set the environment variable <tei-code data-teiname="code">JAVA_HOME</tei-code>
             to some appropriate version! At present <tei-code data-teiname="code">export JAVA_HOME=/usr/lib/jvm/jre-1.8.0-openjdk</tei-code>
             will do.
+            
+            <!-- Need to revisit the above item. As of February 2020, Debian package update needs to be handled
+            by Peter Stadler, and is not necessarily the responsibility of release technician(s). (JL, 2020-02-13) -->
           </tei-item>
 
-          <tei-item data-teiname="item"><tei-hi data-teiname="hi" rend="bold">Update the list of <tei-ref data-teiname="ref" target="http://www.tei-c.org/Guidelines/P5/index.xml#previous">Previous releases of
-                P5</tei-ref></tei-hi><tei-lb data-teiname="lb"></tei-lb> If you have editing privileges on the TEI WordPress on
-            tei-c.org, add the new release to the top of the release table. If not, ask one of the
+          <tei-item data-teiname="item"><tei-hi data-teiname="hi" rend="bold">Update the list of previous releases of P5</tei-hi>, which is found at <tei-ref data-teiname="ref" target="https://tei-c.org/guidelines/p5/#section-2">https://tei-c.org/guidelines/p5/#section-2</tei-ref>.<tei-lb data-teiname="lb"></tei-lb>
+            If you have editing privileges on the TEI WordPress on tei-c.org, add the new release to the top of the release table. If not, ask one of the
             other Council members who does (currently Martina Scholger and Hugh Cayless) to make the change. </tei-item>
 
           <tei-item data-teiname="item"><tei-hi data-teiname="hi" rend="bold">Update the oXygen-ready distribution of TEI.</tei-hi><tei-lb data-teiname="lb"></tei-lb> This involves
             building the new package of oxygen-tei, and then updating the distribution file on the
-            TEI server so that the oXygen software knows about the new release. You may prefer to
-            hand this off to one of the maintainers (currently James Cummings, Syd Bauman or Martin
+            TEI server so that the oXygen software knows about the new release. You may request to
+            hand this off to one of the maintainers (currently Syd Bauman, James Cummings, or Martin
             Holmes) to do this for you if you're not familiar with the project. <tei-list data-teiname="list">
               <tei-item data-teiname="item">Check that you have ant (at least version 1.8) installed on your machine.</tei-item>
               <tei-item data-teiname="item">Check that the latest versions of the TEI Stylesheets and TEI P5 packages are
@@ -429,7 +445,7 @@
             text of P5/ReleaseNotes/readme-X.X.X.xml in plain text form (which can be generated
             using the "readme" profile for teitotxt), and place an announcement on the Text Encoding
             Initiative Newsfeed blog in the category of 'News'. They will also update the table of
-            previous releases at <tei-ref data-teiname="ref" target="http://www.tei-c.org/Guidelines/P5/index.xml#previous">http://www.tei-c.org/Guidelines/P5/index.xml#previous</tei-ref>.</tei-item>
+            previous releases at <tei-ref data-teiname="ref" target="https://tei-c.org/guidelines/p5/#section-2">https://tei-c.org/guidelines/p5/#section-2</tei-ref>.</tei-item>
           <tei-item data-teiname="item"><tei-hi data-teiname="hi" rend="bold">Lift the freeze on committing changes to the repository</tei-hi><tei-lb data-teiname="lb"></tei-lb>
             Write to the TEI Council list and let them know that they can once again start
             committing changes to the repository.</tei-item>
@@ -437,12 +453,12 @@
           <tei-item data-teiname="item"><tei-hi data-teiname="hi" rend="bold">Increment the build number for the next release cycle</tei-hi><tei-lb data-teiname="lb"></tei-lb>
             Recalling how release preparation requires confirmation of version number,
             use your best judgment to determine the version number for the next release (in consultation with Council,
-            if possible). TEI version numbers are based on the <tei-ref data-teiname="ref" target="http://www.unicode.org/versions/">system used by the Unicode Consortium</tei-ref> but with the first digit for major
-            changes, the second for schema-changing revisions, and the third for
+            if possible). TEI version numbers are based on the Unicode Consortium system (<tei-ref data-teiname="ref" target="http://www.unicode.org/versions/">http://www.unicode.org/versions/</tei-ref>) but with the first
+            digit for major changes, the second for schema-changing revisions, and the third for
             non-schema-changing revisions. When the first or second digit is incremented, the
             following digit or digits is set to zero. 
             
-            <!-- Revisit version control instructions at F2F (JL, 2020-02-13) -->
+            <!-- Revisit version control instructions at May 2020 F2F (JL, 2020-02-13) -->
             
             After the release process has been completed, the release number for both P5 and the
             Stylesheets needs to be updated. On the dev branch, edit the P5/VERSION file and the Stylesheets/VERSION

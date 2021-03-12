@@ -172,6 +172,10 @@
 
         <tei-list data-origname="list" data-origatts="type" type="ordered">
           <tei-head data-origname="head">1-2 weeks before release:</tei-head>
+          <!-- MDH and SB: Adding a new step to update p5subset.xml in the Stylesheets repo. -->
+          <tei-item data-origname="item"><tei-hi data-origname="hi" data-origatts="rend" rend="bold">Get p5subset.xml</tei-hi> from a fresh build of the P5 dev branch (preferably on Jenkins, at a URL such as 
+            https://jenkins.tei-c.org/job/TEIP5-dev/lastSuccessfulBuild/artifact/P5/release/xml/tei/odd/p5subset.xml) and
+            update the version of p5subset.xml in the Stylesheets/source directory in the Stylesheets dev branch.</tei-item>
           <tei-item data-origname="item">Inform the Jenkins maintainers (who may not be on the Council listserv), and the 
             TEI sysadmin, of the pending release date, so that they can be available or on-call. </tei-item>
           <tei-item data-origname="item">Ask one of the Jenkins maintainers (Peter Stadler, Martin Holmes, and Raffaele Viglianti) 
@@ -204,15 +208,16 @@
           </tei-item>
           <tei-item data-origname="item">At least one week before releasing, we enter a review period, during which the only
             changes made to the code to be released should be to fix errors, rather than to add new
-            features. A release branch will be created by the release technician, to which ONLY
+            features. Release branches for the TEI and Stylesheets repos will be created by the release technician, to which ONLY
             release-blocking bug fixes and corrections to typographical errors will be pushed. The
-            release technician should announce a temporary hold on pushes to the dev branch on the
-            Council list, then create the branch and push it to GitHub using the following commands:
+            release technician should announce a temporary hold on pushes to the dev branches on the
+            Council list, then create the branches and push it to GitHub using the following commands, once in the
+            TEI repo and once in the Stylesheets repo:
 	    <tei-lb data-origname="lb"></tei-lb><tei-code data-origname="code">git checkout dev</tei-code> (make sure you start from the dev branch) or if you have the dev branch 
             checked out, <tei-code data-origname="code">git status</tei-code> in order to make sure that you have the current version and no uncommitted changes.
 	    <tei-lb data-origname="lb"></tei-lb><tei-code data-origname="code">git checkout -b release-X.X.X</tei-code>
 	    <tei-lb data-origname="lb"></tei-lb><tei-code data-origname="code">git push -u origin release-X.X.X</tei-code></tei-item>
-	  <tei-item data-origname="item">Immediately after the release branch has been pushed,
+	  <tei-item data-origname="item">Immediately after the release branches have been pushed,
 	  the release technician should inform the <tei-ref data-origname="ref" data-origatts="target" target="mailto:tei-council@lists.tei-c.org">Council
 	  list</tei-ref> and ask the maintainers of the TEI Jenkins
 	  systems to add a build of the release branch so that commits
@@ -228,7 +233,7 @@
         <tei-list data-origname="list" data-origatts="type" type="ordered">
           <tei-head data-origname="head">On release day:</tei-head>
           <tei-item data-origname="item">The instructions below for Git commands are assumed to be run in the release-X.X.X
-            branch unless otherwise specified. If you did not create the release branch, you can 
+            branches unless otherwise specified. If you did not create the release branch, you can 
             set up a copy of it using the following commands:<tei-lb data-origname="lb"></tei-lb>
             <tei-code data-origname="code">git pull origin</tei-code> (to make sure your copy knows about the release branch)<tei-lb data-origname="lb"></tei-lb>
             <tei-code data-origname="code">git checkout --track origin/release-X.X.X</tei-code>
@@ -244,7 +249,7 @@
           <!-- MDH and SB: Adding a new step to update p5subset.xml in the Stylesheets repo. -->
           <tei-item data-origname="item"><tei-hi data-origname="hi" data-origatts="rend" rend="bold">Get p5subset.xml</tei-hi> from a fresh build of the P5 release branch (preferably on Jenkins, at a URL such as 
             https://jenkins.tei-c.org/job/TEIP5-release-X.X.X/lastSuccessfulBuild/artifact/P5/release/xml/tei/odd/p5subset.xml) and
-            update the version of p5subset.xml in the Stylesheets/source directory in the Stylesheets dev branch.</tei-item>
+            update the version of p5subset.xml in the Stylesheets/source directory in the Stylesheets release-X.X.X branch.</tei-item>
           <tei-item data-origname="item"><tei-hi data-origname="hi" data-origatts="rend" rend="bold">Announce a freeze on pushes to the release branch on the
               TEI Technical Council mailing list</tei-hi></tei-item>
           <tei-item data-origname="item"><tei-hi data-origname="hi" data-origatts="rend" rend="bold">Merge the release branch into <tei-code data-origname="code">released</tei-code></tei-hi>.  <tei-lb data-origname="lb"></tei-lb>

@@ -27,6 +27,8 @@
       </tei-sourcedesc>
     </tei-filedesc>
     <tei-revisiondesc data-origname="revisionDesc">
+      <tei-change data-origname="change" data-origatts="when who" when="2021-03-12" who="#MDH">Adding a step to update the version of p5subset.xml which is in the Stylesheets repo,
+      prior to doing any of the release steps.</tei-change>
       <tei-change data-origname="change" data-origatts="when who" when="2020-02-13" who="#JL">Additional changes based on February 2020 release to make links visible, clarify release steps, confirm primacy of Paderborn Jenkins server.</tei-change>
       <tei-change data-origname="change" data-origatts="when who" when="2020-02-13" who="#JL">Update all references, and add links, to Jenkins servers. Revise instructions regarding release version numbers.</tei-change>
       <tei-change data-origname="change" data-origatts="when who" when="2020-02-10" who="#EBB">Update all references about ssh to the tei server to the new HumaNum server consistently. Correct small grammatical errors.</tei-change>
@@ -207,7 +209,7 @@
             release technician should announce a temporary hold on pushes to the dev branch on the
             Council list, then create the branch and push it to GitHub using the following commands:
 	    <tei-lb data-origname="lb"></tei-lb><tei-code data-origname="code">git checkout dev</tei-code> (make sure you start from the dev branch) or if you have the dev branch 
-            checked out, <tei-code data-origname="code">git status</tei-code> in order to make sure that you have the current version and no uncommited changes.
+            checked out, <tei-code data-origname="code">git status</tei-code> in order to make sure that you have the current version and no uncommitted changes.
 	    <tei-lb data-origname="lb"></tei-lb><tei-code data-origname="code">git checkout -b release-X.X.X</tei-code>
 	    <tei-lb data-origname="lb"></tei-lb><tei-code data-origname="code">git push -u origin release-X.X.X</tei-code></tei-item>
 	  <tei-item data-origname="item">Immediately after the release branch has been pushed,
@@ -239,6 +241,10 @@
             <tei-code data-origname="code">2.8.2</tei-code><tei-lb data-origname="lb"></tei-lb> This changes the release from beta (or possibly alpha) to the
             actual release version number. </tei-item>
 
+          <!-- MDH and SB: Adding a new step to update p5subset.xml in the Stylesheets repo. -->
+          <tei-item data-origname="item"><tei-hi data-origname="hi" data-origatts="rend" rend="bold">Get p5subset.xml</tei-hi> from a fresh build of the P5 release branch (preferably on Jenkins, at a URL such as 
+            https://jenkins.tei-c.org/job/TEIP5-release-X.X.X/lastSuccessfulBuild/artifact/P5/release/xml/tei/odd/p5subset.xml) and
+            update the version of p5subset.xml in the Stylesheets/source directory in the Stylesheets dev branch.</tei-item>
           <tei-item data-origname="item"><tei-hi data-origname="hi" data-origatts="rend" rend="bold">Announce a freeze on pushes to the release branch on the
               TEI Technical Council mailing list</tei-hi></tei-item>
           <tei-item data-origname="item"><tei-hi data-origname="hi" data-origatts="rend" rend="bold">Merge the release branch into <tei-code data-origname="code">released</tei-code></tei-hi>.  <tei-lb data-origname="lb"></tei-lb>

@@ -27,6 +27,8 @@
       </tei-sourcedesc>
     </tei-filedesc>
     <tei-revisiondesc data-origname="revisionDesc">
+      <tei-change data-origname="change" data-origatts="when who" when="2021-04-11" who="#SDB">Per Nick Cole, since $PATH is not set up on server, need to specify
+      current directory in path to some executables.</tei-change>
       <tei-change data-origname="change" data-origatts="when who" when="2021-03-12" who="#MDH">Adding a step to update the version of p5subset.xml which is in the Stylesheets repo,
       prior to doing any of the release steps.</tei-change>
       <tei-change data-origname="change" data-origatts="when who" when="2020-02-13" who="#JL">Additional changes based on February 2020 release to make links visible, clarify release steps, confirm primacy of Paderborn Jenkins server.</tei-change>
@@ -347,9 +349,9 @@
             <tei-lb data-origname="lb"></tei-lb>Change to the directory <tei-code data-origname="code">~/repos/infrastructure/humanum</tei-code> and issue the script 
             <tei-code data-origname="code">docker-update.sh</tei-code> for every service, i.e. 
             <tei-list data-origname="list">
-              <tei-item data-origname="item"><tei-code data-origname="code"># docker-update.sh roma</tei-code></tei-item>
-              <tei-item data-origname="item"><tei-code data-origname="code"># docker-update.sh romabeta</tei-code></tei-item>
-              <tei-item data-origname="item"><tei-code data-origname="code"># docker-update.sh oxgarage</tei-code></tei-item>
+              <tei-item data-origname="item"><tei-code data-origname="code"># ./docker-update.sh roma</tei-code></tei-item>
+              <tei-item data-origname="item"><tei-code data-origname="code"># ./docker-update.sh romabeta</tei-code></tei-item>
+              <tei-item data-origname="item"><tei-code data-origname="code"># ./docker-update.sh oxgarage</tei-code></tei-item>
             </tei-list>
             NB: Every invocation might take some time but each should succesfully finish with the notification 
             "Creating $CONTAINER$ ... done" 

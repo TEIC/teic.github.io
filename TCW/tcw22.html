@@ -414,23 +414,36 @@
             hand this off to one of the maintainers (currently Syd Bauman, James Cummings, or Martin
             Holmes) to do this for you if you're not familiar with the project. <tei-list data-origname="list">
               <tei-item data-origname="item">Check that you have ant (at least version 1.8) installed on your machine.</tei-item>
+              <tei-item data-origname="item">Check that your current Java version is 1.8. This is an old version, but it is currently 
+              required for building the oxygen-tei package. If you are on e.g. Ubuntu Linux, you can 
+              install multiple Java versions and switch between them easily using <tei-code data-origname="code">sudo update-alternatives --config java</tei-code>. </tei-item>
               <tei-item data-origname="item">Check that the latest versions of the TEI Stylesheets and TEI P5 packages are
-                available for download from the SourceForge Files section, since the oxygen-tei
+                available for download from the TEI server, since the oxygen-tei
                 update/upload script retrieves them from there.</tei-item>
+              
               <tei-item data-origname="item">Check out or update a local copy of the source code from <tei-ref data-origname="ref" data-origatts="target" target="https://github.com/TEIC/oxygen-tei">https://github.com/TEIC/oxygen-tei</tei-ref> to your local system.</tei-item>
-              <tei-item data-origname="item">Make sure the build script knows where to find your oxygen.jar file (from the
-                Oxygen installed on your system) by copying the file into
-                  <tei-code data-origname="code">oxygen-tei/lib</tei-code> or symlinking it.</tei-item>
+              
               <tei-item data-origname="item">cd into the oxygen-tei folder (it should contain folders called "frameworks" and
                 "jenkins").</tei-item>
+              
               <tei-item data-origname="item">Run the ant build process with the "release" parameter: <tei-lb data-origname="lb"></tei-lb>
                 <tei-code data-origname="code">ant release</tei-code><tei-lb data-origname="lb"></tei-lb> This builds the plugin using the latest stable
                 versions of P5 and the Stylesheets, then offers to upload the result to the TEI's
                 SourceForge repo to become a release of the TEI-maintained version of the plugin.
                 This also creates an updated updateSite.oxygen file, by retrieving the latest
                 updateSite.oxygen file from the tei-c.org site, and asks the user to provide the new
-                version number before creating a new version of updateSite.oxygen. It also offers to
-                upload that file to tei-c.org, if the user has shell access. </tei-item>
+                version number before creating a new version of updateSite.oxygen. </tei-item>
+              
+              <tei-item data-origname="item">Go to the GitHub repo and create a new release, using the <tei-code data-origname="code">Draft new release</tei-code>
+              button. Copy the previous release info (tag, title and text), and tweak the versions as appropriate. The tag should be  <tei-code data-origname="code">vx.x.x</tei-code>, the title will be 
+                <tei-code data-origname="code">Release x.x.x</tei-code>, and the text <tei-quote data-origname="quote">Release number X of the oXygen TEI plugin, based on TEI P5 x.x.x and Stylesheets x.x.x.</tei-quote></tei-item>
+              
+              <tei-item data-origname="item">Attach the zip file you just created in the build process, which will be named
+              something like <tei-code data-origname="code">oxygen-tei-x.x.x-x.x.x.zip</tei-code>, with the numbers from
+              the current TEI and Stylesheets releases.</tei-item>
+              
+              <tei-item data-origname="item">Once the tag/release has been published, run <tei-lb data-origname="lb"></tei-lb><tei-code data-origname="code">ant uploadOxygenUpdateFile</tei-code><tei-lb data-origname="lb"></tei-lb>
+              to push the <tei-code data-origname="code">updateSite.oxygen</tei-code> file up to the TEI server.</tei-item>
             </tei-list>
           </tei-item>
 
@@ -473,7 +486,7 @@
 </tei-tei>
 <script type="text/javascript">
           var c = new CETEI();
-          c.els = ["tei:TEI","tei:teiHeader","tei:fileDesc","tei:titleStmt","tei:title","tei:author","tei:publicationStmt","tei:publisher","tei:date","tei:sourceDesc","tei:p","tei:revisionDesc","tei:change","tei:text","tei:body","tei:div","tei:head","tei:ref","tei:ident","tei:list","tei:item","tei:list","tei:code","tei:lb","tei:q","tei:hi","tei:emph",];
+          c.els = ["tei:TEI","tei:teiHeader","tei:fileDesc","tei:titleStmt","tei:title","tei:author","tei:publicationStmt","tei:publisher","tei:date","tei:sourceDesc","tei:p","tei:revisionDesc","tei:change","tei:text","tei:body","tei:div","tei:head","tei:ref","tei:ident","tei:list","tei:item","tei:list","tei:code","tei:lb","tei:q","tei:hi","tei:emph","tei:quote",];
           c.els.push("egXML");
           c.applyBehaviors();
         </script></body></html>

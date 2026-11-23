@@ -76,13 +76,28 @@ tei-list>tei-head {
 tei-list[type=bulleted] {
   list-style-type: disc;
 }
+
+/* Ordered lists: Items encoded with @n: use the encoded label */
+tei-list > tei-item[n] {
+  display: block;  /* suppresses the default marker */
+  padding-left: 5em;
+}
+tei-list > tei-item[n]::before {
+  content: attr(n)". ";      
+  display: inline-block;
+  box-sizing: border-box;
+  padding-right: .5em;
+  text-align: right;
+}
+
+/* Fallback: ordered lists with no @n and @type="ordered" keep the original auto-decimal counter */
 tei-list[type=ordered]>tei-item {
   list-style-type: none;
   list-style-position: outside;
   counter-increment: teilist;
   margin-left: 30px;
 }
-tei-list[type=ordered]>tei-item:before {
+tei-list[type=ordered]>tei-item::before {
   content: counter(teilist, decimal)'. ';
   display: inline-block;
   width: 20px;
@@ -117,10 +132,16 @@ tei-ident {
   background-color: #EEE;
 }
 tei-gi {
-    text-before: "<";
+    /*text-before: "<";*/
   font-family: "Noto Mono", Monaco, "Courier New", Courier, monospace;
   background-color: #EEF;
-  text-after: ">";
+  /*text-after: ">";*/
+}
+tei-gi::before {
+    content: "<";
+}
+tei-gi::after {
+    content: ">";
 }
 tei-att {
   font-family: "Noto Mono", Monaco, "Courier New", Courier, monospace;
